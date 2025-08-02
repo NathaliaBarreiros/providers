@@ -51,7 +51,7 @@
       "source": "responseBody"
     }
   ],
-  "secretHeaders": ["Cookie", "Authorization", "X-CSRF-Token", "X-Requested-With"],
+  "secretHeaders": ["Cookie", "Authorization", "X-CSRF-Token", "X-Requested-With", "xsrf"],
   "responseMatches": [
     {
       "type": "regex",
