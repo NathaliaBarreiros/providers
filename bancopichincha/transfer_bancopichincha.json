@@ -1,6 +1,6 @@
 {
   "actionType": "transfer_bancopichincha",
-  "authLink": "https://omnicanalidadcanales.pichincha.com/",
+  "authLink": "https://bancaweb.pichincha.com/pichincha",
   "url": "https://omnicanalidadcanales.pichincha.com/account-movements/graphql",
   "method": "POST",
   "skipRequestHeaders": ["Accept-Encoding", "User-Agent"],
