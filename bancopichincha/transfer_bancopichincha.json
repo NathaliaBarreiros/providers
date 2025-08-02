@@ -1,0 +1,100 @@
+{
+  "actionType": "transfer_bancopichincha",
+  "authLink": "https://omnicanalidadcanales.pichincha.com/login",
+  "url": "https://omnicanalidadcanales.pichincha.com/account-movements/graphql",
+  "method": "POST",
+  "skipRequestHeaders": ["Accept-Encoding", "User-Agent"],
+  "body": "",
+  "metadata": {
+    "platform": "bancopichincha",
+    "urlRegex": "https://omnicanalidadcanales\\.pichincha\\.com/account-movements/graphql",
+    "method": "POST",
+    "shouldSkipCloseTab": false,
+    "transactionsExtraction": {
+      "transactionJsonPathListSelector": "$.data.consultMovements.transactions[*].movements[*]",
+      "transactionJsonPathSelectors": {
+        "recipient": "$.transactionType",
+        "amount": "$.amount",
+        "date": "$.transactionDate",
+        "paymentId": "$.id",
+        "currency": "USD"
+      }
+    },
+    "proofMetadataSelectors": [
+      {
+        "type": "jsonPath",
+        "value": "$.data.consultMovements.transactions[*].movements[{{INDEX}}].amount"
+      },
+      {
+        "type": "jsonPath",
+        "value": "$.data.consultMovements.transactions[*].movements[{{INDEX}}].id"
+      },
+      {
+        "type": "jsonPath",
+        "value": "$.data.consultMovements.transactions[*].movements[{{INDEX}}].transactionType"
+      },
+      {
+        "type": "jsonPath",
+        "value": "$.data.consultMovements.transactions[*].movements[{{INDEX}}].transactionDate"
+      },
+      {
+        "type": "jsonPath",
+        "value": "$.data.consultMovements.transactions[*].movements[{{INDEX}}].creditDebitIndicator"
+      }
+    ]
+  },
+  "paramNames": ["TRANSACTION_ID"],
+  "paramSelectors": [
+    {
+      "type": "jsonPath",
+      "value": "$.data.consultMovements.transactions[*].movements[{{INDEX}}].id",
+      "source": "responseBody"
+    }
+  ],
+  "secretHeaders": ["Cookie", "Authorization", "X-CSRF-Token", "X-Requested-With"],
+  "responseMatches": [
+    {
+      "type": "regex",
+      "value": "\"amount\":\\s*\"\\$\\s*(?<amount>[0-9.,]+)\""
+    },
+    {
+      "type": "regex",
+      "value": "\"creditDebitIndicator\":\\s*\"DBIT\""
+    },
+    {
+      "type": "regex",
+      "value": "\"transactionDetail\":\\s*\"TRANSFERENCIA (?:DIRECTA|INTERBANCARIA)\""
+    },
+    {
+      "type": "regex",
+      "value": "\"transactionType\":\\s*\"TRANSFERENCIA (?:DIRECTA|INTERBANCARIA) A (?<recipient>[^\"]+)\"",
+      "hash": true
+    },
+    {
+      "type": "regex",
+      "value": "\"transactionDate\":\\s*\"(?<date>[0-9]{8})\""
+    },
+    {
+      "type": "regex",
+      "value": "\"id\":\\s*\"(?<transactionId>[a-f0-9-]+)\""
+    }
+  ],
+  "responseRedactions": [
+    {
+      "jsonPath": "$.data.consultMovements.transactions[*].movements[{{INDEX}}].transactionType",
+      "xPath": ""
+    },
+    {
+      "jsonPath": "$.data.consultMovements.transactions[*].movements[{{INDEX}}].documentNumber",
+      "xPath": ""
+    },
+    {
+      "jsonPath": "$.data.consultMovements.transactions[*].movements[{{INDEX}}].availableBalance",
+      "xPath": ""
+    },
+    {
+      "jsonPath": "$.data.consultMovements.transactions[*].movements[{{INDEX}}].branchName",
+      "xPath": ""
+    }
+  ]
+} 
