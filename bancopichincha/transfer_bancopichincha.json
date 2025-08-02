@@ -1,6 +1,6 @@
 {
   "actionType": "transfer_bancopichincha",
-  "authLink": "https://omnicanalidadcanales.pichincha.com/login",
+  "authLink": "https://omnicanalidadcanales.pichincha.com/",
   "url": "https://omnicanalidadcanales.pichincha.com/account-movements/graphql",
   "method": "POST",
   "skipRequestHeaders": ["Accept-Encoding", "User-Agent"],
@@ -9,7 +9,7 @@
     "platform": "bancopichincha",
     "urlRegex": "https://omnicanalidadcanales\\.pichincha\\.com/account-movements/graphql",
     "method": "POST",
-    "shouldSkipCloseTab": false,
+    "shouldSkipCloseTab": true,
     "transactionsExtraction": {
       "transactionJsonPathListSelector": "$.data.consultMovements.transactions[*].movements[*]",
       "transactionJsonPathSelectors": {
