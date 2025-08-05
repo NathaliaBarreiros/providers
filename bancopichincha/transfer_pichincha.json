@@ -1,12 +1,12 @@
 {
-  "actionType": "transfer_bancopichincha",
+  "actionType": "transfer_pichincha",
   "authLink": "https://bancaweb.pichincha.com/pichincha",
   "url": "https://omnicanalidadcanales.pichincha.com/account-movements/graphql",
   "method": "POST",
   "skipRequestHeaders": ["Accept-Encoding"],
   "body": "",
   "metadata": {
-    "platform": "bancopichincha",
+    "platform": "pichincha",
     "urlRegex": "https://omnicanalidadcanales\\.pichincha\\.com/account-movements/graphql",
     "method": "POST",
     "shouldSkipCloseTab": true,
@@ -54,14 +54,11 @@
   "secretHeaders": [
     "Cookie", 
     "Authorization", 
-    "Xsrf", 
-    "X-XSRF-TOKEN",
-    "X-CSRF-Token", 
-    "X-Requested-With",
-    "x-dtreferer",
+    "xsrf", 
     "x-dtpc",
-    "Identity",
-    "Channel"
+    "x-dtreferer",
+    "identity",
+    "channel"
   ],
   "responseMatches": [
     {
@@ -74,11 +71,11 @@
     },
     {
       "type": "regex",
-      "value": "\"transactionDetail\":\\s*\"TRANSFERENCIA (?:DIRECTA|INTERBANCARIA)\""
+      "value": "\"transactionDetail\":\\s*\"TRANSFERENCIA\\s+(?:DIRECTA|INTERBANCARIA)\""
     },
     {
       "type": "regex",
-      "value": "\"transactionType\":\\s*\"TRANSFERENCIA (?:DIRECTA|INTERBANCARIA) A (?<recipient>[^\"]+)\"",
+      "value": "\"transactionType\":\\s*\"TRANSFERENCIA\\s+(?:DIRECTA|INTERBANCARIA)\\s+[ADO]\\s+(?<recipient>[^\"]+)\"",
       "hash": true
     },
     {
