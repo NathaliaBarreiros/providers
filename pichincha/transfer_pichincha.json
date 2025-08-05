@@ -1,13 +1,13 @@
 {
   "actionType": "transfer_pichincha",
   "authLink": "https://bancaweb.pichincha.com/pichincha",
-  "url": "https://omnicanalidadcanales.pichincha.com/account-movements/graphql",
+  "url": "https://omnicanalidadcanales.pichincha.com/product-summary/graphql",
   "method": "POST",
   "skipRequestHeaders": ["Accept-Encoding"],
   "body": "",
   "metadata": {
     "platform": "pichincha",
-    "urlRegex": "https://omnicanalidadcanales\\.pichincha\\.com/account-movements/graphql",
+    "urlRegex": "https://omnicanalidadcanales\\.pichincha\\.com/product-summary/graphql",
     "method": "POST",
     "shouldSkipCloseTab": true,
     "transactionsExtraction": {
@@ -54,9 +54,7 @@
   "secretHeaders": [
     "Cookie", 
     "Authorization", 
-    "xsrf", 
-    "x-dtpc",
-    "x-dtreferer",
+    "Xsrf", 
     "Identity",
     "Channel"
   ],
