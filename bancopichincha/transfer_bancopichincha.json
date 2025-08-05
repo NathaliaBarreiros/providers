@@ -3,7 +3,7 @@
   "authLink": "https://bancaweb.pichincha.com/pichincha",
   "url": "https://omnicanalidadcanales.pichincha.com/account-movements/graphql",
   "method": "POST",
-  "skipRequestHeaders": ["Accept-Encoding", "User-Agent"],
+  "skipRequestHeaders": ["Accept-Encoding"],
   "body": "",
   "metadata": {
     "platform": "bancopichincha",
@@ -51,7 +51,18 @@
       "source": "responseBody"
     }
   ],
-  "secretHeaders": ["Cookie", "Authorization", "X-CSRF-Token", "X-Requested-With", "xsrf"],
+  "secretHeaders": [
+    "Cookie", 
+    "Authorization", 
+    "Xsrf", 
+    "X-XSRF-TOKEN",
+    "X-CSRF-Token", 
+    "X-Requested-With",
+    "x-dtreferer",
+    "x-dtpc",
+    "Identity",
+    "Channel"
+  ],
   "responseMatches": [
     {
       "type": "regex",
