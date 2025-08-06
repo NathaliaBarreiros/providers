@@ -1,0 +1,105 @@
+{
+  "actionType": "transfer_bancopichincha",
+  "authLink": "https://bancaweb.pichincha.com/pichincha",
+  "url": "https://omnicanalidadcanales.pichincha.com/account-movements/graphql",
+  "method": "POST",
+  "skipRequestHeaders": ["Accept-Encoding"],
+  "body": "",
+  "metadata": {
+    "platform": "bancopichincha",
+    "urlRegex": "https://omnicanalidadcanales\\.pichincha\\.com/account-movements/graphql",
+    "method": "POST",
+    "shouldSkipCloseTab": true,
+    "shouldReplayRequestInPage": true,
+    "transactionsExtraction": {
+      "transactionJsonPathListSelector": "$.data.consultMovements.transactions[*].movements[*]",
+      "transactionJsonPathSelectors": {
+        "amount": "$.amount",
+        "transactionId": "$.id",
+        "transactionType": "$.transactionType",
+        "transactionDate": "$.transactionDate",
+        "creditDebitIndicator": "$.creditDebitIndicator",
+        "documentNumber": "$.documentNumber"
+      }
+    }
+  },
+  "paramNames": ["amount", "transactionId", "transactionType", "transactionDate", "creditDebitIndicator"],
+  "paramSelectors": [
+    {
+      "type": "jsonPath",
+      "value": "$.amount",
+      "source": "responseBody"
+    },
+    {
+      "type": "jsonPath", 
+      "value": "$.id",
+      "source": "responseBody"
+    },
+    {
+      "type": "jsonPath",
+      "value": "$.transactionType", 
+      "source": "responseBody"
+    },
+    {
+      "type": "jsonPath",
+      "value": "$.transactionDate",
+      "source": "responseBody"
+    },
+    {
+      "type": "jsonPath",
+      "value": "$.creditDebitIndicator",
+      "source": "responseBody"
+    }
+  ],
+  "secretHeaders": [
+    "Cookie",
+    "Xsrf",
+    "Identity", 
+    "Channel",
+    "Authorization",
+    "x-dtreferer",
+    "x-dtpc"
+  ],
+  "responseMatches": [
+    {
+      "type": "regex",
+      "value": "consultMovements"
+    },
+    {
+      "type": "regex", 
+      "value": "\"movements\":\\s*\\["
+    },
+    {
+      "type": "regex",
+      "value": "\"transactionDate\":\\s*\"\\d{8}\""
+    }
+  ],
+  "responseNotMatches": [
+    {
+      "type": "regex",
+      "value": "\"parameters\":"
+    },
+    {
+      "type": "regex",
+      "value": "Invalid CORS request"
+    }
+  ],
+  "responseRedactions": [
+    {
+      "jsonPath": "$.data.consultMovements.transactions[*].movements[*].transactionType",
+      "xPath": ""
+    },
+    {
+      "jsonPath": "$.data.consultMovements.transactions[*].movements[*].documentNumber",
+      "xPath": ""
+    },
+    {
+      "jsonPath": "$.data.consultMovements.transactions[*].movements[*].availableBalance",
+      "xPath": ""
+    },
+    {
+      "jsonPath": "$.data.consultMovements.transactions[*].movements[*].branchName",
+      "xPath": ""
+    }
+  ]
+} 
