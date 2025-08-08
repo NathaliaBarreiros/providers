@@ -3,7 +3,9 @@
   "authLink": "https://bancaweb.pichincha.com/pichincha",
   "url": "https://omnicanalidadcanales.pichincha.com/account-movements/graphql",
   "method": "POST",
-  "skipRequestHeaders": ["Accept-Encoding"],
+  "skipRequestHeaders": [
+    "Accept-Encoding"
+  ],
   "body": "",
   "metadata": {
     "platform": "bancopichincha",
@@ -23,7 +25,13 @@
       }
     }
   },
-  "paramNames": ["amount", "transactionId", "transactionType", "transactionDate", "creditDebitIndicator"],
+  "paramNames": [
+    "amount",
+    "transactionId",
+    "transactionType",
+    "transactionDate",
+    "creditDebitIndicator"
+  ],
   "paramSelectors": [
     {
       "type": "jsonPath",
@@ -31,13 +39,13 @@
       "source": "responseBody"
     },
     {
-      "type": "jsonPath", 
+      "type": "jsonPath",
       "value": "$.id",
       "source": "responseBody"
     },
     {
       "type": "jsonPath",
-      "value": "$.transactionType", 
+      "value": "$.transactionType",
       "source": "responseBody"
     },
     {
@@ -52,13 +60,14 @@
     }
   ],
   "secretHeaders": [
-    "Cookie",
     "Xsrf",
-    "Identity", 
+    "Identity",
     "Channel",
-    "Authorization",
     "x-dtreferer",
-    "x-dtpc"
+    "x-dtpc",
+    "Referer",
+    "User-Agent",
+    "Accept"
   ],
   "responseMatches": [
     {
@@ -66,12 +75,12 @@
       "value": "consultMovements"
     },
     {
-      "type": "regex", 
-      "value": "\"movements\":\\s*\\["
+      "type": "regex",
+      "value": "transactions"
     },
     {
       "type": "regex",
-      "value": "\"transactionDate\":\\s*\"\\d{8}\""
+      "value": "movements"
     }
   ],
   "responseNotMatches": [
@@ -102,4 +111,4 @@
       "xPath": ""
     }
   ]
-} 
+}
